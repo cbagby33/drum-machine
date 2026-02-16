@@ -53,3 +53,22 @@
   font-family: fantasy;
   font-size: 1.5em;
 }
+#drum-pads{
+  height: 56.5%;
+  width: 75.5%;
+  margin: 36px auto 0 auto;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+.pad-row{
+  height: 70px;
+  width: auto;
+  display: flex;
+  justify-content: space-between;
+}
+.drum-pad{
+  width: 70px;
+  height: 70px;
+  background-color: #808080;
+}

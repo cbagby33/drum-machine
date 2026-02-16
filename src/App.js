@@ -18,7 +18,23 @@ class DrumMachine extends React.Component{
               <div className="logo-text logo-text-three">1000</div>
             </div>
           </div>
-          <div id="drum-pads"></div>
+          <div id="drum-pads">
+            <div className="pad-row">
+              <div className="drum-pad"></div>
+              <div className="drum-pad"></div>
+              <div className="drum-pad"></div>
+            </div>
+            <div className="pad-row">
+              <div className="drum-pad"></div>
+              <div className="drum-pad"></div>
+              <div className="drum-pad"></div>
+            </div>
+            <div className="pad-row">
+              <div className="drum-pad"></div>
+              <div className="drum-pad"></div>
+              <div className="drum-pad"></div>
+            </div>
+          </div>
         </div>
         <div className="side side-two"></div>
       </div>
