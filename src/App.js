@@ -59,7 +59,11 @@ class DrumMachine extends React.Component{
                 </div>
               </div>
             </div>
-            <div className="control-section" id="slider"></div>
+            <div className="control-section" id="sliders">
+              <div className="slider-tray">
+                <div className="slider"></div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

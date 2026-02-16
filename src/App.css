@@ -113,3 +113,18 @@
   width: 28px;
   border: solid 1px black;
 }
+.slider-tray{
+  width: 4px;
+  height: 196px;
+  background-color: black;
+}
+.slider{
+  width: 51px;
+  height: 5px;
+  background-color: red;
+  margin-left: -24px;
+}
+#sliders{
+  justify-content: center;
+  align-items: center;
+}
