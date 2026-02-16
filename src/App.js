@@ -10,7 +10,17 @@ class DrumMachine extends React.Component{
   render(){
     return(
       <div id='drum-machine'>
-        <div id="drum-pads"></div>
+        <div className="side side-one">
+          <div id="logo">
+            <div id="logo-inner">
+              <div className="logo-text logo-text-one">BIG WEB</div>
+              <div className="logo-text logo-text-two">Drum Machine</div>
+              <div className="logo-text logo-text-three">1000</div>
+            </div>
+          </div>
+          <div id="drum-pads"></div>
+        </div>
+        <div className="side side-two"></div>
       </div>
     )
   }
