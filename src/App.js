@@ -38,6 +38,29 @@ class DrumMachine extends React.Component{
         </div>
         <div className="side side-two">
           <div id="display"></div>
+          <div id="controls">
+            <div className="control-section" id="switches">
+              <div className="switch">
+                <div className="switch-title">Switch</div>
+                <div className="switch-control">
+                  <div className="switch-button"></div>
+                </div>
+              </div>
+              <div className="switch">
+                <div className="switch-title">Switch</div>
+                <div className="switch-control">
+                  <div className="switch-button"></div>
+                </div>
+              </div>
+              <div className="switch">
+                <div className="switch-title">Switch</div>
+                <div className="switch-control">
+                  <div className="switch-button"></div>
+                </div>
+              </div>
+            </div>
+            <div className="control-section" id="slider"></div>
+          </div>
         </div>
       </div>
     )
