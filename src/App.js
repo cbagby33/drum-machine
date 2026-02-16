@@ -36,7 +36,9 @@ class DrumMachine extends React.Component{
             </div>
           </div>
         </div>
-        <div className="side side-two"></div>
+        <div className="side side-two">
+          <div id="display"></div>
+        </div>
       </div>
     )
   }

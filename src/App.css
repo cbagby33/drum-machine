@@ -72,3 +72,13 @@
   height: 70px;
   background-color: #808080;
 }
+#display{
+  width: 200px;
+  border-top: solid 20px black;
+  border-bottom: solid 20px black;
+  border-left: solid 10px black;
+  border-right: solid 10px black;
+  height: 54px;
+  background-color: #7ac774;
+  margin: 30px auto;
+}
