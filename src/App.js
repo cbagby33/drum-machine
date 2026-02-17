@@ -3,6 +3,32 @@ import './App.css';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
+const audioSources = {
+  'trigger-keys':['Q', 'W', 'E', 'A', 'S', 'D', 'Z', 'X', 'C'],
+  'Bank_1':{
+    'Heater 1': 'https://cdn.freecodecamp.org/testable-projects-fcc/audio/Heater-1.mp3',
+    'Heater 2': 'https://cdn.freecodecamp.org/testable-projects-fcc/audio/Heater-2.mp3',
+    'Heater 3': 'https://cdn.freecodecamp.org/testable-projects-fcc/audio/Heater-3.mp3',
+    'Heater 4': 'https://cdn.freecodecamp.org/testable-projects-fcc/audio/Heater-4_1.mp3',
+    'Clap': 'https://cdn.freecodecamp.org/testable-projects-fcc/audio/Heater-6.mp3',
+    'Open Hi-Hat': 'https://cdn.freecodecamp.org/testable-projects-fcc/audio/Dsc_Oh.mp3',
+    'Kick & Hat': 'https://cdn.freecodecamp.org/testable-projects-fcc/audio/Kick_n_Hat.mp3',
+    'Kick': 'https://cdn.freecodecamp.org/testable-projects-fcc/audio/RP4_KICK_1.mp3',
+    'Closed Hi-Hat': 'https://cdn.freecodecamp.org/testable-projects-fcc/audio/Cev_H2.mp3'
+  },
+  'Bank_2':{
+    'Chord 1': 'https://s3.amazonaws.com/freecodecamp/drums/Chord_1.mp3',
+    'Chord 2': 'https://s3.amazonaws.com/freecodecamp/drums/Chord_2.mp3',
+    'Chord 3': 'https://s3.amazonaws.com/freecodecamp/drums/Chord_3.mp3',
+    'Shaker': 'https://s3.amazonaws.com/freecodecamp/drums/Give_us_a_light.mp3',
+    'Open HH': 'https://s3.amazonaws.com/freecodecamp/drums/Dry_Ohh.mp3',
+    'Closed HH': 'https://s3.amazonaws.com/freecodecamp/drums/Bld_H1.mp3',
+    'Punchy Kick': 'https://s3.amazonaws.com/freecodecamp/drums/punchy_kick_1.mp3',
+    'Rimshot': 'https://s3.amazonaws.com/freecodecamp/drums/side_stick_1.mp3',
+    'Snare': 'https://s3.amazonaws.com/freecodecamp/drums/Brk_Snr.mp3'
+  }
+}
+
 function DrumMachineLogo(){
   return(
     <div id="logo">
@@ -70,6 +96,9 @@ class DrumPads extends React.Component{
 class DrumPad extends React.Component{
   constructor(props){
     super(props)
+    this.state = {
+      padColor: '#808080'
+    }
     this.clickHandler = this.clickHandler.bind(this)
   }
   clickHandler(e){
@@ -77,9 +106,9 @@ class DrumPad extends React.Component{
   }
   render(){
     return(
-      <div className="drum-pad" onMouseDown={this.clickHandler}>
+      <div className="drum-pad" onMouseUp={this.clickHandler}>
         {this.props.padId}
-        <audio className="clip" id={this.props.padId} src="https://cdn.freecodecamp.org/testable-projects-fcc/audio/Heater-6.mp3"></audio>
+        <audio className="clip" id={this.props.padId} src="https://s3.amazonaws.com/freecodecamp/drums/Chord_3.mp3"></audio>
       </div>
     )
   }
