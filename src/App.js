@@ -4,28 +4,96 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 
 const audioSources = {
-  'trigger-keys':['Q', 'W', 'E', 'A', 'S', 'D', 'Z', 'X', 'C'],
-  'Bank_1':{
-    'Heater 1': 'https://cdn.freecodecamp.org/testable-projects-fcc/audio/Heater-1.mp3',
-    'Heater 2': 'https://cdn.freecodecamp.org/testable-projects-fcc/audio/Heater-2.mp3',
-    'Heater 3': 'https://cdn.freecodecamp.org/testable-projects-fcc/audio/Heater-3.mp3',
-    'Heater 4': 'https://cdn.freecodecamp.org/testable-projects-fcc/audio/Heater-4_1.mp3',
-    'Clap': 'https://cdn.freecodecamp.org/testable-projects-fcc/audio/Heater-6.mp3',
-    'Open Hi-Hat': 'https://cdn.freecodecamp.org/testable-projects-fcc/audio/Dsc_Oh.mp3',
-    'Kick & Hat': 'https://cdn.freecodecamp.org/testable-projects-fcc/audio/Kick_n_Hat.mp3',
-    'Kick': 'https://cdn.freecodecamp.org/testable-projects-fcc/audio/RP4_KICK_1.mp3',
-    'Closed Hi-Hat': 'https://cdn.freecodecamp.org/testable-projects-fcc/audio/Cev_H2.mp3'
+  triggerKeys: ['Q', 'W', 'E', 'A', 'S', 'D', 'Z', 'X', 'C'],
+  Q: {
+    'bank-1':{
+      'pad-name': 'Heater 1',
+      'audio-src': 'https://cdn.freecodecamp.org/testable-projects-fcc/audio/Heater-1.mp3'
+      },
+    'bank-2':{
+      'pad-name': 'Chord 1',
+      'audio-src': 'https://s3.amazonaws.com/freecodecamp/drums/Chord_1.mp3'
+    }
   },
-  'Bank_2':{
-    'Chord 1': 'https://s3.amazonaws.com/freecodecamp/drums/Chord_1.mp3',
-    'Chord 2': 'https://s3.amazonaws.com/freecodecamp/drums/Chord_2.mp3',
-    'Chord 3': 'https://s3.amazonaws.com/freecodecamp/drums/Chord_3.mp3',
-    'Shaker': 'https://s3.amazonaws.com/freecodecamp/drums/Give_us_a_light.mp3',
-    'Open HH': 'https://s3.amazonaws.com/freecodecamp/drums/Dry_Ohh.mp3',
-    'Closed HH': 'https://s3.amazonaws.com/freecodecamp/drums/Bld_H1.mp3',
-    'Punchy Kick': 'https://s3.amazonaws.com/freecodecamp/drums/punchy_kick_1.mp3',
-    'Rimshot': 'https://s3.amazonaws.com/freecodecamp/drums/side_stick_1.mp3',
-    'Snare': 'https://s3.amazonaws.com/freecodecamp/drums/Brk_Snr.mp3'
+  W: {
+    'bank-1':{
+      'pad-name': 'Heater 2',
+      'audio-src': 'https://cdn.freecodecamp.org/testable-projects-fcc/audio/Heater-2.mp3'
+    },
+    'bank-2':{
+      'pad-name': 'Chord 2',
+      'audio-src': 'https://s3.amazonaws.com/freecodecamp/drums/Chord_2.mp3'
+    }
+  },
+  E: {
+    'bank-1':{
+      'pad-name': 'Heater 3',
+      'audio-src': 'https://cdn.freecodecamp.org/testable-projects-fcc/audio/Heater-3.mp3'
+    },
+    'bank-2':{
+      'pad-name': 'Chord 3',
+      'audio-src': 'https://s3.amazonaws.com/freecodecamp/drums/Chord_3.mp3'
+    }
+  },
+  A: {
+    'bank-1':{
+      'pad-name': 'Heater 4',
+      'audio-src': 'https://cdn.freecodecamp.org/testable-projects-fcc/audio/Heater-4_1.mp3'
+    },
+    'bank-2':{
+      'pad-name': 'Shaker',
+      'audio-src': 'https://s3.amazonaws.com/freecodecamp/drums/Give_us_a_light.mp3'
+    }
+  },
+  S: {
+    'bank-1':{
+      'pad-name': 'Clap',
+      'audio-src': 'https://cdn.freecodecamp.org/testable-projects-fcc/audio/Heater-6.mp3'
+    },
+    'bank-2':{
+      'pad-name': 'Open HH',
+      'audio-src': 'https://s3.amazonaws.com/freecodecamp/drums/Dry_Ohh.mp3'
+    }
+  },
+  D: {
+    'bank-1':{
+      'pad-name': 'Open Hi-Hat',
+      'audio-src': 'https://cdn.freecodecamp.org/testable-projects-fcc/audio/Dsc_Oh.mp3'
+    },
+    'bank-2':{
+      'pad-name': 'Closed HH',
+      'audio-src': 'https://s3.amazonaws.com/freecodecamp/drums/Bld_H1.mp3'
+    }
+  },
+  Z: {
+    'bank-1':{
+      'pad-name': 'Kick & Hat',
+      'audio-src': 'https://cdn.freecodecamp.org/testable-projects-fcc/audio/Kick_n_Hat.mp3'
+    },
+    'bank-2':{
+      'pad-name': 'Punchy Kick',
+      'audio-src': 'https://s3.amazonaws.com/freecodecamp/drums/punchy_kick_1.mp3'
+    }
+  },
+  X: {
+    'bank-1':{
+      'pad-name': 'Kick',
+      'audio-src': 'https://cdn.freecodecamp.org/testable-projects-fcc/audio/RP4_KICK_1.mp3'
+    },
+    'bank-2':{
+      'pad-name': 'Rimshot',
+      'audio-src': 'https://s3.amazonaws.com/freecodecamp/drums/side_stick_1.mp3'
+    }
+  },
+  C: {
+    'bank-1':{
+      'pad-name': 'Closed Hi-Hat',
+      'audio-src': 'https://cdn.freecodecamp.org/testable-projects-fcc/audio/Cev_H2.mp3'
+    },
+    'bank-2':{
+      'pad-name': 'Snare',
+      'audio-src': 'https://s3.amazonaws.com/freecodecamp/drums/Brk_Snr.mp3'
+    }
   }
 }
 
@@ -67,37 +135,14 @@ class SwitchController extends React.Component{
     )
   }
 }
-class DrumPads extends React.Component{
-  constructor(props){
-    super(props)
-  }
-  render(){
-    return(
-      <div id="drum-pads">
-        <div className="pad-row">
-          <DrumPad padId="Q"/>
-          <DrumPad padId="W"/>
-          <DrumPad padId="E"/>
-        </div>
-        <div className="pad-row">
-          <DrumPad padId="A"/>
-          <DrumPad padId="S"/>
-          <DrumPad padId="D"/>
-        </div>
-        <div className="pad-row">
-          <DrumPad padId="Z"/>
-          <DrumPad padId="X"/>
-          <DrumPad padId="C"/>
-        </div>
-      </div>
-    )
-  }
-}
+
 class DrumPad extends React.Component{
   constructor(props){
     super(props)
     this.state = {
-      padColor: '#808080'
+      padColor: '#808080',
+      audioFile:'https://s3.amazonaws.com/freecodecamp/drums/Chord_3.mp3',
+      padName: 'Chord 3'
     }
     this.clickHandler = this.clickHandler.bind(this)
   }
@@ -107,12 +152,28 @@ class DrumPad extends React.Component{
   }
   render(){
     return(
-      <div className="drum-pad" onMouseUp={this.clickHandler}>
+      <div className="drum-pad" id={this.state.padName} onMouseUp={this.clickHandler}>
         {this.props.padId}
-        <audio className="clip" id={this.props.padId} src="https://s3.amazonaws.com/freecodecamp/drums/Chord_3.mp3"></audio>
+        <audio className="clip" id={this.props.padId} src={this.state.audioFile}></audio>
       </div>
     )
   }
+}
+
+function DrumPads() {
+  const padRowsAmount = Math.floor(audioSources.triggerKeys.length / 3);
+  const rows = [];
+  const pads = audioSources.triggerKeys.map(pad =>
+    <DrumPad padId={pad} key={pad}/>
+  );
+  for(let row = 0; row < padRowsAmount; row++){
+    let padStart = row*3;
+    let padEnd = padStart+3;
+    rows.push(<div className="pad-row" key={row}>{pads.slice(padStart, padEnd)}</div>)
+  }
+  return(
+    <div id="drum-pads">{rows}</div>
+  )
 }
 
 class DrumMachine extends React.Component{
