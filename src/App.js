@@ -127,7 +127,7 @@ class SwitchController extends React.Component{
   render(){
     return(
       <div className="switch">
-        <div className="switch-title">Switch</div>
+        <div className="switch-title">{this.props.name}</div>
         <div className="switch-control">
           <div className="switch-button"></div>
         </div>
@@ -191,9 +191,9 @@ class DrumMachine extends React.Component{
           <div id="display"></div>
           <div id="controls">
             <div className="control-section" id="switches">
-              <SwitchController />
-              <SwitchController />
-              <SwitchController />
+              <SwitchController name="Power" />
+              <SwitchController name="Bank" />
+              <SwitchController name="Repeat" />
             </div>
             <div className="control-section" id="sliders">
               <Slider />
