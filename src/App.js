@@ -144,10 +144,11 @@ class DrumPad extends React.Component{
   clickHandler(e){
     document.getElementById(this.props.padId).currentTime = 0;
     document.getElementById(this.props.padId).play();
+    this.props.onDisplayChange(this.props.bank['pad-name'])
   }
   render(){
     return(
-      <div className="drum-pad" id={this.props.bank['pad-name']} onMouseUp={this.clickHandler}>
+      <div className="drum-pad" id={this.props.bank['pad-name']} onClick={this.clickHandler}>
         {this.props.padId}
         <audio className="clip" id={this.props.padId} src={this.props.bank['audio-src']}></audio>
       </div>
@@ -156,12 +157,12 @@ class DrumPad extends React.Component{
 }
 
 function DrumPads({
-  bank
+  bank, onDisplayChange
 }) {
   const padRowsAmount = Math.floor(audioSources.triggerKeys.length / 3);
   const rows = [];
   const pads = audioSources.triggerKeys.map(pad =>
-    <DrumPad padId={pad} key={pad} bank={audioSources[pad]['bank-'+bank]}/>
+    <DrumPad padId={pad} key={pad} bank={audioSources[pad]['bank-'+bank]} onDisplayChange={onDisplayChange} />
   );
   for(let row = 0; row < padRowsAmount; row++){
     let padStart = row*3;
@@ -177,18 +178,25 @@ class DrumMachine extends React.Component{
   constructor(props){
     super(props)
     this.state = {
-      'bank':1
+      'bank':1,
+      'display':''
     }
+    this.changeDisplay = this.changeDisplay.bind(this)
+  }
+  changeDisplay(newDisplay){
+      this.setState({
+        display: newDisplay
+      })
   }
   render(){
     return(
       <div id='drum-machine'>
         <div className="side side-one">
           <DrumMachineLogo />
-          <DrumPads bank={this.state.bank}/>
+          <DrumPads bank={this.state.bank} onDisplayChange={this.changeDisplay}/>
         </div>
         <div className="side side-two">
-          <div id="display"></div>
+          <div id="display">{this.state.display}</div>
           <div id="controls">
             <div className="control-section" id="switches">
               <SwitchController name="Power" />
