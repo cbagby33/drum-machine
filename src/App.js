@@ -139,11 +139,6 @@ class SwitchController extends React.Component{
 class DrumPad extends React.Component{
   constructor(props){
     super(props)
-    this.state = {
-      padColor: '#808080',
-      audioFile:'https://s3.amazonaws.com/freecodecamp/drums/Chord_3.mp3',
-      padName: 'Chord 3'
-    }
     this.clickHandler = this.clickHandler.bind(this)
   }
   clickHandler(e){
@@ -152,19 +147,21 @@ class DrumPad extends React.Component{
   }
   render(){
     return(
-      <div className="drum-pad" id={this.state.padName} onMouseUp={this.clickHandler}>
+      <div className="drum-pad" id={this.props.bank['pad-name']} onMouseUp={this.clickHandler}>
         {this.props.padId}
-        <audio className="clip" id={this.props.padId} src={this.state.audioFile}></audio>
+        <audio className="clip" id={this.props.padId} src={this.props.bank['audio-src']}></audio>
       </div>
     )
   }
 }
 
-function DrumPads() {
+function DrumPads({
+  bank
+}) {
   const padRowsAmount = Math.floor(audioSources.triggerKeys.length / 3);
   const rows = [];
   const pads = audioSources.triggerKeys.map(pad =>
-    <DrumPad padId={pad} key={pad}/>
+    <DrumPad padId={pad} key={pad} bank={audioSources[pad]['bank-'+bank]}/>
   );
   for(let row = 0; row < padRowsAmount; row++){
     let padStart = row*3;
@@ -179,13 +176,16 @@ function DrumPads() {
 class DrumMachine extends React.Component{
   constructor(props){
     super(props)
+    this.state = {
+      'bank':1
+    }
   }
   render(){
     return(
       <div id='drum-machine'>
         <div className="side side-one">
           <DrumMachineLogo />
-          <DrumPads />
+          <DrumPads bank={this.state.bank}/>
         </div>
         <div className="side side-two">
           <div id="display"></div>
