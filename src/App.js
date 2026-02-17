@@ -167,7 +167,7 @@ class DrumPad extends React.Component{
   }
   render(){
     return(
-      <div className="drum-pad" id={this.props.bank['pad-name']} onClick={this.clickHandler}>
+      <div className="drum-pad" id={this.props.bank['pad-name']} onMouseDown={this.clickHandler}>
         {this.props.padId}
         <audio className="clip" id={this.props.padId} src={this.props.bank['audio-src']}></audio>
       </div>
@@ -235,7 +235,6 @@ class DrumMachine extends React.Component{
             <div className="control-section" id="switches">
               <SwitchController name="Power" position='end' switchFunc={this.powerSwitch} />
               <SwitchController name="Bank" position='start' switchFunc={this.changeBank} />
-              <SwitchController name="Repeat" position='start'/>
             </div>
             <div className="control-section" id="sliders">
               <Slider />
