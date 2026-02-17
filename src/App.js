@@ -49,32 +49,38 @@ class DrumPads extends React.Component{
     return(
       <div id="drum-pads">
         <div className="pad-row">
-          <DrumPad />
-          <DrumPad />
-          <DrumPad />
+          <DrumPad padId="Q"/>
+          <DrumPad padId="W"/>
+          <DrumPad padId="E"/>
         </div>
         <div className="pad-row">
-          <DrumPad />
-          <DrumPad />
-          <DrumPad />
+          <DrumPad padId="A"/>
+          <DrumPad padId="S"/>
+          <DrumPad padId="D"/>
         </div>
         <div className="pad-row">
-          <DrumPad />
-          <DrumPad />
-          <DrumPad />
+          <DrumPad padId="Z"/>
+          <DrumPad padId="X"/>
+          <DrumPad padId="C"/>
         </div>
       </div>
     )
   }
 }
-
 class DrumPad extends React.Component{
   constructor(props){
     super(props)
+    this.clickHandler = this.clickHandler.bind(this)
+  }
+  clickHandler(e){
+    document.getElementById(this.props.padId).play()
   }
   render(){
     return(
-      <div className="drum-pad"></div>
+      <div className="drum-pad" onMouseDown={this.clickHandler}>
+        {this.props.padId}
+        <audio className="clip" id={this.props.padId} src="https://cdn.freecodecamp.org/testable-projects-fcc/audio/Heater-6.mp3"></audio>
+      </div>
     )
   }
 }

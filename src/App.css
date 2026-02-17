@@ -3,6 +3,7 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
+  user-select: none;
 }
 #drum-machine{
   background-color: #363636;
@@ -71,6 +72,15 @@
   width: 70px;
   height: 70px;
   background-color: #808080;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.drum-pad:active{
+  background-color: red;
+  color: white;
+  font-weight: bold;
 }
 #display{
   width: 200px;
