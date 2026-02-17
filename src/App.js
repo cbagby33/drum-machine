@@ -102,7 +102,8 @@ class DrumPad extends React.Component{
     this.clickHandler = this.clickHandler.bind(this)
   }
   clickHandler(e){
-    document.getElementById(this.props.padId).play()
+    document.getElementById(this.props.padId).currentTime = 0;
+    document.getElementById(this.props.padId).play();
   }
   render(){
     return(
