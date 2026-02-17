@@ -123,12 +123,28 @@ class Slider extends React.Component{
 class SwitchController extends React.Component{
   constructor(props){
     super(props)
+    this.state = {
+      position:this.props.position
+    }
+    this.clickHandler = this.clickHandler.bind(this);
+  }
+  clickHandler(){
+    if(this.state.position === 'end') {
+      this.setState({
+        position: 'start'
+      });
+    } else {
+      this.setState({
+        position: 'end'
+      });
+    }
+    this.props.switchFunc();
   }
   render(){
     return(
-      <div className="switch">
+      <div className="switch" onClick={this.clickHandler}>
         <div className="switch-title">{this.props.name}</div>
-        <div className="switch-control">
+        <div className="switch-control" style={{justifyContent:`${this.state.position}`}}>
           <div className="switch-button"></div>
         </div>
       </div>
@@ -142,9 +158,11 @@ class DrumPad extends React.Component{
     this.clickHandler = this.clickHandler.bind(this)
   }
   clickHandler(e){
-    document.getElementById(this.props.padId).currentTime = 0;
-    document.getElementById(this.props.padId).play();
-    this.props.onDisplayChange(this.props.bank['pad-name'])
+    if(this.props.enabled){
+      document.getElementById(this.props.padId).currentTime = 0;
+      document.getElementById(this.props.padId).play();
+      this.props.onDisplayChange(this.props.bank['pad-name'])
+    }
   }
   render(){
     return(
@@ -157,12 +175,12 @@ class DrumPad extends React.Component{
 }
 
 function DrumPads({
-  bank, onDisplayChange
+  bank, onDisplayChange, padsEnabled
 }) {
   const padRowsAmount = Math.floor(audioSources.triggerKeys.length / 3);
   const rows = [];
   const pads = audioSources.triggerKeys.map(pad =>
-    <DrumPad padId={pad} key={pad} bank={audioSources[pad]['bank-'+bank]} onDisplayChange={onDisplayChange} />
+    <DrumPad padId={pad} key={pad} bank={audioSources[pad]['bank-'+bank]} onDisplayChange={onDisplayChange} enabled={padsEnabled} />
   );
   for(let row = 0; row < padRowsAmount; row++){
     let padStart = row*3;
@@ -179,29 +197,37 @@ class DrumMachine extends React.Component{
     super(props)
     this.state = {
       'bank':1,
-      'display':''
+      'display':'',
+      'on': true
     }
     this.changeDisplay = this.changeDisplay.bind(this)
+    this.powerSwitch = this.powerSwitch.bind(this)
   }
   changeDisplay(newDisplay){
-      this.setState({
-        display: newDisplay
-      })
+    this.setState({
+      display: newDisplay
+    });
+  }
+  powerSwitch(){
+    this.setState({
+      display: '',
+      on: !this.state.on
+    });
   }
   render(){
     return(
       <div id='drum-machine'>
         <div className="side side-one">
           <DrumMachineLogo />
-          <DrumPads bank={this.state.bank} onDisplayChange={this.changeDisplay}/>
+          <DrumPads bank={this.state.bank} onDisplayChange={this.changeDisplay} padsEnabled={this.state.on} />
         </div>
         <div className="side side-two">
           <div id="display">{this.state.display}</div>
           <div id="controls">
             <div className="control-section" id="switches">
-              <SwitchController name="Power" />
-              <SwitchController name="Bank" />
-              <SwitchController name="Repeat" />
+              <SwitchController name="Power" position='end' switchFunc={this.powerSwitch} />
+              <SwitchController name="Bank" position='start' />
+              <SwitchController name="Repeat" position='start'/>
             </div>
             <div className="control-section" id="sliders">
               <Slider />

@@ -76,11 +76,14 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  box-shadow: black 3px 3px 5px;
 }
 .drum-pad:active{
   background-color: red;
   color: white;
   font-weight: bold;
+  height: 67px;
+  box-shadow: red 0px 3px;
 }
 #display{
   width: 200px;
@@ -114,11 +117,13 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  cursor: pointer;
 }
 .switch-control{
   width: 60px;
   height: 23px;
   background-color: black;
+  display: flex;
 }
 .switch-button{
   height: 21px;
