@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom/client';
 
 const audioSources = {
   triggerKeys: ['Q', 'W', 'E', 'A', 'S', 'D', 'Z', 'X', 'C'],
+  bankName:['Heater Kit', 'Smooth Piano Kit'],
   Q: {
     'bank-1':{
       'pad-name': 'Heater 1',
@@ -198,10 +199,11 @@ class DrumMachine extends React.Component{
     this.state = {
       'bank':1,
       'display':'',
-      'on': true
+      'on': true,
     }
     this.changeDisplay = this.changeDisplay.bind(this)
     this.powerSwitch = this.powerSwitch.bind(this)
+    this.changeBank = this.changeBank.bind(this)
   }
   changeDisplay(newDisplay){
     this.setState({
@@ -212,6 +214,12 @@ class DrumMachine extends React.Component{
     this.setState({
       display: '',
       on: !this.state.on
+    });
+  }
+  changeBank(){
+    this.setState({
+      'bank': 3 - this.state.bank,
+      'display': audioSources.bankName[1-(this.state.bank-1)]
     });
   }
   render(){
@@ -226,7 +234,7 @@ class DrumMachine extends React.Component{
           <div id="controls">
             <div className="control-section" id="switches">
               <SwitchController name="Power" position='end' switchFunc={this.powerSwitch} />
-              <SwitchController name="Bank" position='start' />
+              <SwitchController name="Bank" position='start' switchFunc={this.changeBank} />
               <SwitchController name="Repeat" position='start'/>
             </div>
             <div className="control-section" id="sliders">
