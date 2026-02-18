@@ -109,14 +109,24 @@ function DrumMachineLogo(){
     </div>
   )
 }
-class Slider extends React.Component{
+class VolumeSlider extends React.Component{
   constructor(props){
     super(props)
+    this.state = {
+      value: this.props.volume
+    }
+    this.inputHandler = this.inputHandler.bind(this)
+  }
+  inputHandler(e){
+    this.props.handleVolumeChange(e.target.value)
+    this.setState({
+      value:e.target.value
+    });
   }
   render(){
     return(
-      <div className="slider-tray">
-        <div className="slider"></div>
+      <div className="slider-container">
+        <input className="slider" type="range" max='1' min='0' step='0.01' value={this.state.value} onInput={this.inputHandler} />
       </div>
     )
   }
@@ -158,6 +168,9 @@ class DrumPad extends React.Component{
     super(props)
     this.clickHandler = this.clickHandler.bind(this)
   }
+  componentDidUpdate() {
+    document.getElementById(this.props.padId).volume = this.props.volume;
+  }
   clickHandler(e){
     if(this.props.enabled){
       document.getElementById(this.props.padId).currentTime = 0;
@@ -176,12 +189,12 @@ class DrumPad extends React.Component{
 }
 
 function DrumPads({
-  bank, onDisplayChange, padsEnabled
+  bank, onDisplayChange, padsEnabled, volume
 }) {
   const padRowsAmount = Math.floor(audioSources.triggerKeys.length / 3);
   const rows = [];
   const pads = audioSources.triggerKeys.map(pad =>
-    <DrumPad padId={pad} key={pad} bank={audioSources[pad]['bank-'+bank]} onDisplayChange={onDisplayChange} enabled={padsEnabled} />
+    <DrumPad padId={pad} key={pad} bank={audioSources[pad]['bank-'+bank]} onDisplayChange={onDisplayChange} enabled={padsEnabled} volume={volume} />
   );
   for(let row = 0; row < padRowsAmount; row++){
     let padStart = row*3;
@@ -200,10 +213,12 @@ class DrumMachine extends React.Component{
       'bank':1,
       'display':'',
       'on': true,
+      'masterVolume':0.5
     }
     this.changeDisplay = this.changeDisplay.bind(this)
     this.powerSwitch = this.powerSwitch.bind(this)
     this.changeBank = this.changeBank.bind(this)
+    this.newVolume = this.newVolume.bind(this)
   }
   changeDisplay(newDisplay){
     this.setState({
@@ -222,12 +237,17 @@ class DrumMachine extends React.Component{
       'display': audioSources.bankName[1-(this.state.bank-1)]
     });
   }
+  newVolume(num){
+    this.setState({
+      masterVolume: num
+    });
+  }
   render(){
     return(
       <div id='drum-machine'>
         <div className="side side-one">
           <DrumMachineLogo />
-          <DrumPads bank={this.state.bank} onDisplayChange={this.changeDisplay} padsEnabled={this.state.on} />
+          <DrumPads bank={this.state.bank} onDisplayChange={this.changeDisplay} padsEnabled={this.state.on} volume={this.state.masterVolume}/>
         </div>
         <div className="side side-two">
           <div id="display">{this.state.display}</div>
@@ -237,7 +257,7 @@ class DrumMachine extends React.Component{
               <SwitchController name="Bank" position='start' switchFunc={this.changeBank} />
             </div>
             <div className="control-section" id="sliders">
-              <Slider />
+              <VolumeSlider volume={this.state.masterVolume} handleVolumeChange={this.newVolume} />
             </div>
           </div>
         </div>
