@@ -24,6 +24,7 @@ class DrumMachine extends React.Component{
     this.powerSwitch = this.powerSwitch.bind(this)
     this.changeBank = this.changeBank.bind(this)
     this.newVolume = this.newVolume.bind(this)
+    this.displayReset = this.displayReset.bind(this)
   }
   changeDisplay(newDisplay){
     this.setState({
@@ -42,10 +43,17 @@ class DrumMachine extends React.Component{
       'display': audioSources.bankName[1-(this.state.bank-1)]
     });
   }
+  displayReset(){
+    this.setState({
+      'display': ''
+    });
+  }
   newVolume(num){
     this.setState({
-      masterVolume: num
+      'masterVolume': num,
+      'display': 'Volume: '+Math.floor(num*100)
     });
+    setTimeout(this.displayReset, 3000)
   }
   render(){
     return(
