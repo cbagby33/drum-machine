@@ -53,7 +53,7 @@ class DrumMachine extends React.Component{
       'masterVolume': num,
       'display': 'Volume: '+Math.floor(num*100)
     });
-    setTimeout(this.displayReset, 3000)
+    setTimeout(this.displayReset, 1500)
   }
   render(){
     return(

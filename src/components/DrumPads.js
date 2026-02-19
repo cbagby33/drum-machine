@@ -6,7 +6,7 @@ const audioSources = jsonData;
 
 // component used to create rows of drum pads and pass them state from DrumMachine parent 
 function DrumPads({
-  bank, onDisplayChange, padsEnabled, volume
+  bank, onDisplayChange, padsEnabled, volume, passKeyDown
 }) {
   const padRowsAmount = Math.floor(audioSources.triggerKeys.length / 3);
   const rows = [];
